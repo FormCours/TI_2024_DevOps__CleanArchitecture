@@ -5,20 +5,20 @@ Exemple d'implémentation d'une Clean Architecture en .Net.
 ## Objectifs :
 - Maintenance du projet
 - Meilleure séparation des responsabilités _(Separation of Concerns)_
-- Meilleure gestion des dépendences
+- Meilleure gestion des dépendances
 
 
 ## Explication des couches 
 
 ### Domain
-Les éléments necessaires au projet
+Les éléments nécessaires au projet
 - Modeles
 - Exceptions
 - Enums
 - Etc...
 
 ### ApplicationCore
-L'implémentation des régles métiers sous forme de service. \
+L'implémentation des régles métier sous forme de service. \
 Définition des interfaces dont elle dépend et qu'elle expose.
 
 ### Presentation
@@ -28,9 +28,9 @@ Les clients :
 - Etc...
 
 ### Infrastructure
-Acces aux données externe : 
+Accès aux données externes : 
 - Base de données
 - Fichiers
-- API exterieur
+- API extérieur
 - Email
 - Etc...
