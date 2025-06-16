@@ -1,0 +1,6 @@
+@DemoCleanArchitecture.Presentation.WebAPI_HostAddress = http://localhost:5063
+
+GET {{DemoCleanArchitecture.Presentation.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
