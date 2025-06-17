@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ressources", "Ressources", "{860626BC-32A9-4FAA-B2D7-65DF1CC88705}"
 	ProjectSection(SolutionItems) = preProject
+		ef.md = ef.md
 		features.md = features.md
 		readme.md = readme.md
 	EndProjectSection
