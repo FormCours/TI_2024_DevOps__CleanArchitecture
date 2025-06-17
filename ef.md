@@ -17,3 +17,9 @@ Depuis le terminal dans le projet "WebAPI"
 ```
 dotnet ef migrations add migration_name --project ../DemoCleanArchitecture.Infrastructure.Database
 ```
+
+## Déployement sur le server
+Depuis le terminal dans le projet "WebAPI"
+```
+dotnet ef database update
+```
