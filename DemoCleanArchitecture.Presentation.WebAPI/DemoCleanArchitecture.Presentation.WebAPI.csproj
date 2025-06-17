@@ -14,6 +14,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DemoCleanArchitecture.ApplicationCore\DemoCleanArchitecture.ApplicationCore.csproj" />
+    <ProjectReference Include="..\DemoCleanArchitecture.Domain\DemoCleanArchitecture.Domain.csproj" />
+    <ProjectReference Include="..\DemoCleanArchitecture.Infrastructure.Database\DemoCleanArchitecture.Infrastructure.Database.csproj" />
+    <ProjectReference Include="..\DemoCleanArchitecture.Infrastructure.Mail\DemoCleanArchitecture.Infrastructure.Mail.csproj" />
   </ItemGroup>
 
 </Project>
