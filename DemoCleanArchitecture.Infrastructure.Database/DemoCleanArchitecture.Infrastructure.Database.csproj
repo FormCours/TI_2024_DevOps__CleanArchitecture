@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DemoCleanArchitecture.ApplicationCore\DemoCleanArchitecture.ApplicationCore.csproj" />
     <ProjectReference Include="..\DemoCleanArchitecture.Domain\DemoCleanArchitecture.Domain.csproj" />
   </ItemGroup>
 
