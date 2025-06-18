@@ -3,6 +3,7 @@ using DemoCleanArchitecture.ApplicationCore.Interfaces.Services;
 using DemoCleanArchitecture.ApplicationCore.Services;
 using DemoCleanArchitecture.Infrastructure.Database;
 using DemoCleanArchitecture.Infrastructure.Database.Repositories;
+using DemoCleanArchitecture.Presentation.WebAPI.Tools;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 // - ApplicationCore
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
+// - Présentation
+builder.Services.AddScoped<TokenTool>();
 // - Infrastructure
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();

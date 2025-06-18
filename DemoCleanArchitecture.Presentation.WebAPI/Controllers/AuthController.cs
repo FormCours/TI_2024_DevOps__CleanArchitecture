@@ -2,6 +2,7 @@
 using DemoCleanArchitecture.Domain.Exceptions;
 using DemoCleanArchitecture.Domain.Modeles;
 using DemoCleanArchitecture.Presentation.WebAPI.Dto.Input;
+using DemoCleanArchitecture.Presentation.WebAPI.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +15,21 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IMemberService _memberService;
-        public AuthController(IMemberService memberService)
+        private readonly TokenTool _tokenTool;
+        public AuthController(IMemberService memberService, TokenTool tokenTool)
         {
             _memberService = memberService;
+            _tokenTool = tokenTool;
+        }
+
+        private IActionResult TokenResponse(Member member)
+        {
+            string token = _tokenTool.Generate(new TokenTool.Data()
+            {
+                MemberId = member.Id,
+                Role = member.Role
+            });
+            return Ok(new { token });
         }
 
         [HttpPost("register")]
@@ -28,12 +41,9 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
             {
                 Member member = _memberService.Register(memberCredential.Email, memberCredential.Password);
 
-                return Ok(new
-                {
-                    token = "Un magnifique token qui sera dans le commit suivant",
-                });
+                return TokenResponse(member);
             }
-            catch(MemberException e)
+            catch (MemberException e)
             {
                 return BadRequest(e.Message);
             }
@@ -47,11 +57,8 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
             try
             {
                 Member member = _memberService.Login(memberCredential.Email, memberCredential.Password);
-
-                return Ok(new
-                {
-                    token = "Bah encore un token et on va bientot coder (⊙ˍ⊙)",
-                });
+                
+                return TokenResponse(member);
             }
             catch (MemberException) 
             {
