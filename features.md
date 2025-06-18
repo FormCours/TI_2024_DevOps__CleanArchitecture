@@ -17,8 +17,14 @@
 (DELT) /api/book/:id
 ```
 
+## Auth (NB : Ces routes ne respectent pas le RestFull)
+```
+(POST) /api/auth/register
+(POST) /api/auth/login
+```
+
 ## Member
 ```
-(POST) /api/member/register
-(POST) /api/member/login
+(GET) /api/member/:id
+(PUT) /api/member/:id
 ```
