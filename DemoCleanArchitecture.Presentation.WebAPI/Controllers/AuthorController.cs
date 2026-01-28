@@ -1,5 +1,4 @@
 ﻿using DemoCleanArchitecture.ApplicationCore.Interfaces.Services;
-using DemoCleanArchitecture.Domain.Exceptions;
 using DemoCleanArchitecture.Domain.Modeles;
 using DemoCleanArchitecture.Presentation.WebAPI.Dto.Input;
 using DemoCleanArchitecture.Presentation.WebAPI.Dto.Output;
@@ -29,7 +28,6 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
         {
             // TODO Ajouter des QueryParams -> Page/NbElement
             IEnumerable<Author> authors = _authorService.GetAll(1, 20);
-
             return Ok(authors.Select(a => a.ToDTO()));
 
             // Utilisation du mapper alternative ↓
@@ -43,15 +41,8 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public IActionResult GetById([FromRoute] long id)
         {
-            try
-            {
-                Author author = _authorService.GetById(id);
-                return Ok(author.ToDetailDTO());
-            }
-            catch (AuthorNotFoundException e)
-            {
-                return NotFound(new { message = e.Message });
-            }
+            Author author = _authorService.GetById(id);
+            return Ok(author.ToDetailDTO());
         }
 
         [HttpPost]
@@ -64,8 +55,8 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
             Author authorCreated = _authorService.Create(author.ToModel());
 
             return CreatedAtAction(
-                nameof(GetById), 
-                new { id = authorCreated.Id }, 
+                nameof(GetById),
+                new { id = authorCreated.Id },
                 authorCreated.ToDetailDTO()
             );
         }

@@ -1,5 +1,4 @@
 ﻿using DemoCleanArchitecture.ApplicationCore.Interfaces.Services;
-using DemoCleanArchitecture.Domain.Exceptions;
 using DemoCleanArchitecture.Domain.Modeles;
 using DemoCleanArchitecture.Presentation.WebAPI.Dto.Input;
 using DemoCleanArchitecture.Presentation.WebAPI.Tools;
@@ -37,16 +36,8 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Register(MemberCredentialInputDTO memberCredential)
         {
-            try
-            {
-                Member member = _memberService.Register(memberCredential.Email, memberCredential.Password);
-
-                return TokenResponse(member);
-            }
-            catch (MemberException e)
-            {
-                return BadRequest(e.Message);
-            }
+            Member member = _memberService.Register(memberCredential.Email, memberCredential.Password);
+            return TokenResponse(member);
         }
 
         [HttpPost("login")]
@@ -54,16 +45,8 @@ namespace DemoCleanArchitecture.Presentation.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Login(MemberCredentialInputDTO memberCredential)
         {
-            try
-            {
-                Member member = _memberService.Login(memberCredential.Email, memberCredential.Password);
-                
-                return TokenResponse(member);
-            }
-            catch (MemberException) 
-            {
-                return BadRequest("Bad credentials");
-            }
+            Member member = _memberService.Login(memberCredential.Email, memberCredential.Password);
+            return TokenResponse(member);
         }
     }
 }
