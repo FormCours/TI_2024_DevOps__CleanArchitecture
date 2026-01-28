@@ -1,6 +1,11 @@
 ﻿namespace DemoCleanArchitecture.Domain.Exceptions
 {
-    public class NotFoundException<TId> : Exception
+    public class NotFoundException : Exception
+    {
+        public NotFoundException(string? message) : base(message) { }
+    }
+
+    public class NotFoundException<TId> : NotFoundException
         where TId : struct
     {
         public TId Id { get; init; }
