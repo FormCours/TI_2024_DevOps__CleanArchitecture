@@ -3,6 +3,7 @@ using DemoCleanArchitecture.ApplicationCore.Interfaces.Services;
 using DemoCleanArchitecture.ApplicationCore.Services;
 using DemoCleanArchitecture.Infrastructure.Database;
 using DemoCleanArchitecture.Infrastructure.Database.Repositories;
+using DemoCleanArchitecture.Presentation.WebAPI.ExceptionHandlers;
 using DemoCleanArchitecture.Presentation.WebAPI.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 // - Controllers
 builder.Services.AddControllers();
+// - ExceptionsHandlers
+builder.Services.AddExceptionHandler<MemberExceptionHandler>();
+builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 // Validation du JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -85,6 +90,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
 
